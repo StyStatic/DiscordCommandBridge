@@ -1,0 +1,9 @@
+{
+  "token": "token",
+  "guildid": "guildid",
+  "channelname": "minelink",
+  "ip": "127.0.0.1",
+  "port": "2832",
+  "prefixmode": true,
+  "prefix": ""
+}
