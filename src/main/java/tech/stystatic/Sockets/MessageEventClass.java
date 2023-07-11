@@ -2,7 +2,6 @@ package tech.stystatic.Sockets;
 
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
-import net.dv8tion.jda.api.hooks.SubscribeEvent;
 import tech.stystatic.Main;
 
 import java.nio.ByteBuffer;
@@ -30,12 +29,7 @@ public class MessageEventClass extends ListenerAdapter implements EventListener 
     public void onMessageReceived(MessageReceivedEvent event) {
         final AsynchronousSocketChannel clientSocketChannel = this.clientSocketChannel;
         if (event.getAuthor() != event.getJDA().getSelfUser()) {
-            String messagetext = "<" + event.getAuthor().getGlobalName() + ">" + " " + event.getMessage().getContentStripped();// Format Text
-
-            // Append Prefix
-            if (Main.prefixmode) {
-                messagetext = Main.prefix + " " + messagetext;
-            }
+            String messagetext = event.getMessage().getContentStripped();// Format Text
 
             // Send Message across socket
             try {

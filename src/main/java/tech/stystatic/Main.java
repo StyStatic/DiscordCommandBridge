@@ -7,15 +7,12 @@ import net.dv8tion.jda.api.requests.GatewayIntent;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import tech.stystatic.Sockets.MessageEventClass;
-import tech.stystatic.Sockets.TransferClient;
+import tech.stystatic.Sockets.TransferServer;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.Iterator;
 
 public class Main {
     public static JDA jda;
@@ -38,9 +35,9 @@ public class Main {
 
         JSONParser jsonParser = new JSONParser();
 
-        // ParentPath + "/Config.json"
+        // ParentPath + "/config.json"
         // "src/main/resources/config.json"
-        try (FileReader reader = new FileReader("src/main/resources/config.json")) {
+        try (FileReader reader = new FileReader(ParentPath + "/config.json")) {
             Object obj = jsonParser.parse(reader);
             JSONObject tokenJson = (JSONObject) obj;
             token = (String) tokenJson.get("token");
@@ -63,7 +60,7 @@ public class Main {
 
         jda.awaitReady();
 
-        TransferClient thread = new TransferClient();
-        thread.start();
+        TransferServer server = new TransferServer();
+        server.start();
     }
 }
